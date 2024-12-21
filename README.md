@@ -6,7 +6,7 @@ To install the package, run this command in the directory of your project's code
 ```commandline
 pip install python3D
 ```
-It's as simple as that-- you can now start writing your first 3D script. Paste the following code to get started.
+You can now start writing your first 3D script. Paste the following code to get started.
 ```python
 import engine as e
 
