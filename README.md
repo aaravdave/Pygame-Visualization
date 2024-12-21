@@ -1,7 +1,5 @@
 # p3D
 ### A cross-platform, fully-featured 3D engine, made in Python.
-[![Get it on GitHub](https://gist.github.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/github.svg)](https://github.com/aaravdave/p3D)
-[![Get it on PyPI](https://gist.github.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/documentation_learn.svg)](https://pypi.org/project/python3D/)
 ## Getting Started
 To install the package, run this command in the directory of your project's code.
 ```commandline
