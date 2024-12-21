@@ -1,2 +1,2 @@
-# 3-D Space Visualization
+# p3D
 *README coming soon.*
