@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "python3D"
+version = "2024.1"
+authors = [
+  { name="Aarav Dave", email="aaravhdave@gmail.com" },
+]
+description = "p3D is a pythonic 3D engine that can simulate textured OBJ models. p3D features logs, preferences, customization, and simple code structure."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/aaravdave/p3D"
+Issues = "https://github.com/aaravdave/p3D/issues"
