@@ -1,3 +1,5 @@
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 from numba import njit
 import numpy as np
@@ -12,11 +14,19 @@ MOUSE_SENSITIVITY = 50  # default: 50
 MOVEMENT_SPEED = 1
 models = dict()
 
+
+def draw_loading(surface, title):
+    surface.fill((0, 0, 0))
+    render_text(surface, (50, (SCREEN_HEIGHT - 120) / 2), 'Loading', 30, (255, 255, 255))
+    render_text(surface, (50, (SCREEN_HEIGHT - 120) / 2 + 50), title, 70, (255, 255, 255), True)
+
+
 p = {
-    'title': 'python3D',
+    'title': 'p3D',
     'camera': [0, 0, 0, 0.01, 0.01],
     'font': 'font.ttf',
     'skybox': None,
+    'loading': draw_loading,
 }
 
 
@@ -46,7 +56,7 @@ def run(setup=lambda: None, loop=lambda x: None):
 
     # display loading screen before engine initialization
     loading = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
-    draw_loading(loading, p['title'])
+    p['loading'](loading, p['title'])
     screen.blit(loading, (0, 0))
     pygame.display.update()
 
@@ -131,7 +141,7 @@ def run(setup=lambda: None, loop=lambda x: None):
         # update loading screen if applicable
         if opacity:
             loading.set_alpha(opacity)
-            draw_loading(loading, p['title'])
+            p['loading'](loading, p['title'])
             screen.blit(loading, (0, 0))
             if elapsed_time < 2:
                 opacity -= elapsed_time * 100
@@ -659,12 +669,6 @@ def render_text(screen, location, text, size, color, bold=False):
         return
     font.set_bold(bold)
     screen.blit(font.render(text, True, color), location)
-
-
-def draw_loading(surface, title):
-    surface.fill((0, 0, 0))
-    render_text(surface, (50, (SCREEN_HEIGHT - 120) / 2), 'Loading', 30, (255, 255, 255))
-    render_text(surface, (50, (SCREEN_HEIGHT - 120) / 2 + 50), title, 70, (255, 255, 255), True)
 
 
 def log(prefix, message, data=None):
