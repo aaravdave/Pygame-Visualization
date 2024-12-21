@@ -1,6 +1,7 @@
 # p3D
 ### A cross-platform, fully-featured 3D engine, made in Python.
-
+[![Get it on GitHub](https://gist.github.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/github.svg)](https://github.com/aaravdave/p3D)
+[![Get it on PyPI](https://gist.github.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/documentation_learn.svg)](https://pypi.org/project/python3D/)
 ## Getting Started
 To install the package, run this command in the directory of your project's code.
 ```commandline
@@ -8,7 +9,7 @@ pip install python3D
 ```
 You can now start writing your first 3D script. Paste the following code to get started.
 ```python
-import engine as e
+import python3D as p3D
 
 
 def setup():
@@ -20,9 +21,9 @@ def loop(elapsed_time):
     """Put your main code here, to run repeatedly."""
 
 
-e.run(setup, loop)
+p3D.run(setup, loop)
 ```
-> The `setup` and `loop` functions are not required parameters of `e.run()`, but all project functions are added in them.
+> The `setup` and `loop` functions are not required parameters of `p3D.run()`, but all project functions are added in them.
 
 You're ready to start developing in 3D!
 
@@ -33,13 +34,13 @@ To add an OBJ model, you can use the `models` registry in your `setup()` functio
 def setup():
     """Put your setup code here, to run once."""
     global models
-    models['model'] = e.Model('model.obj', 'optional_texture.png')
+    models['model'] = p3D.Model('model.obj', 'optional_texture.png')
 ```
 To modify the transformational properties of your models, you can use the `change_position()` property.
 ```python
 models['model'].change_position(x=1)
 ```
-> When in the `loop()` function, you must use `e.models['model']` instead.
+> When in the `loop()` function, you must use `p3D.models['model']` instead.
 
 `x`, `y`, `z` - left/right, up/down, and forward/backward displacements, respectively
 
@@ -49,8 +50,21 @@ models['model'].change_position(x=1)
 
 `reset` - takes inputted values as the new position of the model when set to `1`; `0` by default (adds new values to current values).
 
+### Preferences
+`p3D.preferences` can be used to modify functionality by changing an attribute.
+```python
+p3D.preferences['attribute'] = value
+```
+The following attributes are available:
+- `'title'` - string used for default loading screen, window caption, and system logs. `'p3D'` by default.
+- `'camera'` - list `[x, y, z, h, v]` of starting camera attributes where `x`, `y`, `z` is the position of the camera and `h`, `v` is the starting horizontal and vertical camera angles. `[0, 0, 0, 0.01, 0.01]` by default.
+  - The amount of decimal places in the starting horizontal and vertical camera angles is the amount of decimal places possible in simulation. For example, having `0`, `0` as your `h`, `v` values would make the camera rotate in integer values only, reducing freedom.
+- `'font'` - string file path to font file of choice. `'font.ttf'` by default.
+- `'skybox'` - string file path to skybox image of choice; replaces black environment. `None` by default.
+- `'loading'` - function taking parameters `surface` and `title`, regardless of whether they are used. Custom loading screens must be drawn on with pygame functions.
+
 ### Logs
-The `e.log()` function takes in three parameters (`prefix`, `message`, `data=None`) and logs in the command line in color, if supported.
+The `p3D.log()` function takes in three parameters (`prefix`, `message`, `data=None`) and logs in the command line in color, if supported.
 
 `prefix` - determines type of message sent. Possible values include:
 - `'warning'`: yellow, user warnings
@@ -62,7 +76,7 @@ The `e.log()` function takes in three parameters (`prefix`, `message`, `data=Non
 `data` - list, where each item appears after the message body on a separate line.
 
 #### Proper Usage
-When using the `e.log()` function, following proper usage guides can ensure that in-built engine logs match the style of your project's logs.
+When using the `p3D.log()` function, following proper usage guides can ensure that in-built engine logs match the style of your project's logs.
 - Use warnings when something atypical for your project (e.g., a user hasn't claimed their account and information may be lost) occurs, **NOT** when an error is anticipated.
 - Errors should be used for issues specific to your project (e.g., an item is too expensive for the player to buy).
   - If a runtime error occurs, `FATAL. ` must precede your `message`, and for specific errors, you must include relevant information (e.g. filenames) in the `data` list.
