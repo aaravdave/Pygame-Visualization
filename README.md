@@ -1,5 +1,7 @@
 # p3D
 ### A cross-platform, fully-featured 3D engine, made in Python.
+[![Get it on GitHub](https://gist.github.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/github.svg)](https://github.com/aaravdave/p3D)
+[![Get it on PyPI](https://gist.github.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/documentation_learn.svg)](https://pypi.org/project/python3D/)
 ## Getting Started
 To install the package, run this command in the directory of your project's code.
 ```commandline
@@ -32,7 +34,7 @@ To add an OBJ model, you can use the `models` registry in your `setup()` functio
 def setup():
     """Put your setup code here, to run once."""
     global models
-    models['model'] = p3D.Model('model.obj', 'optional_texture.png')
+    p3D.models['model'] = p3D.Model('model.obj', 'optional_texture.png')
 ```
 To modify the transformational properties of your models, you can use the `change_position()` property.
 ```python
@@ -57,9 +59,10 @@ The following attributes are available:
 - `'title'` - string used for default loading screen, window caption, and system logs. `'p3D'` by default.
 - `'camera'` - list `[x, y, z, h, v]` of starting camera attributes where `x`, `y`, `z` is the position of the camera and `h`, `v` is the starting horizontal and vertical camera angles. `[0, 0, 0, 0.01, 0.01]` by default.
   - The amount of decimal places in the starting horizontal and vertical camera angles is the amount of decimal places possible in simulation. For example, having `0`, `0` as your `h`, `v` values would make the camera rotate in integer values only, reducing freedom.
-- `'font'` - string file path to font file of choice. `'font.ttf'` by default.
+- `'font'` - string file path to font file of choice. `font.ttf` by default.
 - `'skybox'` - string file path to skybox image of choice; replaces black environment. `None` by default.
 - `'loading'` - function taking parameters `surface` and `title`, regardless of whether they are used. Custom loading screens must be drawn on with pygame functions.
+- `'GUI'` - boolean value determining whether to show runtime metrics. `False` by default.
 
 ### Logs
 The `p3D.log()` function takes in three parameters (`prefix`, `message`, `data=None`) and logs in the command line in color, if supported.
@@ -86,4 +89,4 @@ When using the `p3D.log()` function, following proper usage guides can ensure th
 ### Issue Reporting
 To report issues, please refer to our [GitHub Issues](https://github.com/aaravdave/p3D/issues) page.
 ### Contacts
-For questions concerning the contents of this repository, please contact aaravhdave [at] gmail [dot] com.
+For questions concerning the contents of this repository, please contact aaravhdave[at]gmail.com.
