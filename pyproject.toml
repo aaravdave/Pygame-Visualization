@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "python3D"
-version = "2024.1"
+version = "2024.1.3"
 authors = [
   { name="Aarav Dave", email="aaravhdave@gmail.com" },
 ]
@@ -16,6 +16,13 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+    "pygame>1.9.4",
+    "numba",
+    "numpy",
+    "scipy",
+]
+keywords = ["p3D", "python3D", "py3D", "3D", "engine", "game engine", "game", "3D engine"]
 
 [project.urls]
 Homepage = "https://github.com/aaravdave/p3D"
