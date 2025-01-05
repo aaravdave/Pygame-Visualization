@@ -27,7 +27,10 @@ p = {
     'font': 'font.ttf',
     'skybox': None,
     'loading': draw_loading,
+    'GUI': False,
 }
+
+FPS = 0
 
 
 def run(setup=lambda: None, loop=lambda x: None):
@@ -38,6 +41,7 @@ def run(setup=lambda: None, loop=lambda x: None):
         setup (func): Creation of models at beginning.
         loop (func): Updates for models every game tick.
     """
+    global FPS
 
     # window initialization
     pygame.init()
@@ -132,11 +136,13 @@ def run(setup=lambda: None, loop=lambda x: None):
         screen.blit(surface, (0, 0))
 
         # display FPS and camera information
-        render_text(screen, (10, 10), str(round(1 / (elapsed_time + 1e-16))), 30, (255, 255, 255))
-        camera_information = [str(round(float(camera[i]), 3)) for i in range(5)]
-        for i in range(5):
-            render_text(screen, (10, 50 + 15 * i), f'{camera_meanings[i]}: {camera_information[i]}', 15,
-                        (255, 255, 255))
+        FPS = round(1 / (elapsed_time + 1e-16))
+        if p['GUI']:
+            render_text(screen, (10, 10), str(FPS), 30, (255, 255, 255))
+            camera_information = [str(round(float(camera[i]), 3)) for i in range(5)]
+            for i in range(5):
+                render_text(screen, (10, 50 + 15 * i), f'{camera_meanings[i]}: {camera_information[i]}', 15,
+                            (255, 255, 255))
 
         # update loading screen if applicable
         if opacity:
